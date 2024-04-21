@@ -1,4 +1,6 @@
+import { toast } from "react-toastify";
 import "./App.css";
+import { Link } from "react-router-dom";
 
 function App() {
 	const handleAddUser = (e) => {
@@ -17,11 +19,19 @@ function App() {
 			body: JSON.stringify(user),
 		})
 			.then((res) => res.json())
-			.then((data) => console.log(data));
+			.then((data) => {
+				console.log(data);
+				if (data.insertedId) {
+					toast("User added successfully");
+					form.reset();
+				}
+			});
 	};
 
 	return (
 		<>
+			<Link to={"/"}>Home</Link>
+			<br />
 			<h1>Simple CRUD</h1>
 			<form onSubmit={handleAddUser}>
 				<input
