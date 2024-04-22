@@ -30,8 +30,12 @@ function App() {
 
 	return (
 		<>
-			<Link to={"/"}>Home</Link>
-			<br />
+			<div>
+				<Link to={"/"}>Home</Link>
+				<br />
+				<Link to={"/users"}>Users</Link>
+				<br />
+			</div>
 			<h1>Simple CRUD</h1>
 			<form onSubmit={handleAddUser}>
 				<input
