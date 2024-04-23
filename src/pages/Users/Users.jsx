@@ -6,6 +6,7 @@ import Navbar from "../Shared/Navbar/Navbar";
 const Users = () => {
 	const loadedUsers = useLoaderData();
 	const [users, setUsers] = useState(loadedUsers);
+	console.log(`users:`, users);
 
 	const handleDelete = (_id) => {
 		fetch(`http://localhost:5000/users/${_id}`, {
