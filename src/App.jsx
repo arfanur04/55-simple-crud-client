@@ -1,6 +1,8 @@
 import { toast } from "react-toastify";
 import "./App.css";
-import { Link } from "react-router-dom";
+import Navbar from "./pages/Shared/Navbar/Navbar";
+import { Helmet } from "react-helmet-async";
+import { websiteTitle } from "./hooks/useWebsiteTitle/useWebsiteTitle";
 
 function App() {
 	const handleAddUser = (e) => {
@@ -29,13 +31,9 @@ function App() {
 	};
 
 	return (
-		<>
-			<div>
-				<Link to={"/"}>Home</Link>
-				<br />
-				<Link to={"/users"}>Users</Link>
-				<br />
-			</div>
+		<div>
+			<Helmet>{websiteTitle}</Helmet>
+			<Navbar />
 			<h1>Simple CRUD</h1>
 			<form onSubmit={handleAddUser}>
 				<input
@@ -57,7 +55,7 @@ function App() {
 					value={"Add User"}
 				/>
 			</form>
-		</>
+		</div>
 	);
 }
 

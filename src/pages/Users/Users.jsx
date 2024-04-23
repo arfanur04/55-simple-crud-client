@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { toast } from "react-toastify";
+import Navbar from "../Shared/Navbar/Navbar";
 
 const Users = () => {
 	const loadedUsers = useLoaderData();
 	const [users, setUsers] = useState(loadedUsers);
-
-	console.log(`users:`, users);
 
 	const handleDelete = (_id) => {
 		fetch(`http://localhost:5000/users/${_id}`, {
@@ -23,23 +22,21 @@ const Users = () => {
 	};
 
 	return (
-		<div>
-			<div>
-				<Link to={"/"}>Home</Link>
-				<br />
-				<Link to={"/users"}>Users</Link>
-				<br />
-			</div>
+		<>
+			<Navbar />
 			<h2>This is Users: {users.length}</h2>
 			<div>
 				{users?.map((user) => (
 					<p key={user._id}>
-						{user.name} {user.email}{" "}
+						{user.name} {user.email} {user._id}{" "}
+						<Link to={`/update/${user._id}`}>
+							<button>Update</button>
+						</Link>
 						<button onClick={() => handleDelete(user._id)}>X</button>
 					</p>
 				))}
 			</div>
-		</div>
+		</>
 	);
 };
 
